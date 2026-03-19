@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenasa Fayera | Full-stack Developer & Hacker</title>
+    <!-- CSS link -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="dark">
+    <!-- Cursor glow effect -->
+    <div id="cursor-glow"></div>
+    
+    <!-- Background Particle Canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-btn active" data-theme="dark" title="Dark Theme">🌙</button>
+        <button class="theme-btn" data-theme="light" title="Light Theme">☀️</button>
+        <button class="theme-btn" data-theme="blue" title="Blue Developer Theme">💻</button>
+    </div>
+
+    <!-- Header / Hero Section -->
+    <header id="hero" class="section">
+        <div class="hero-content">
+            <div class="profile-pic-container hover-glow">
+                <img src="PP.png" alt="Kenasa Fayera" class="profile-pic">
+            </div>
+            <h1 class="glitch" data-text="Kenasa Fayera">Kenasa Fayera</h1>
+            <h2 class="neon-text type-anim">Full-stack Developer and Hacker</h2>
+            <p class="bio">"I'm a Software Engineering student at ASTU and a passionate
+                                full stack developer who enjoys building modern web
+                                applications and solving real-world problems."</p>
+            <div class="header-actions">
+                <a href="#projects" class="neon-btn">View Projects</a>
+                <a href="#" class="neon-btn btn-secondary download-cv">Download CV <span class="glow"></span></a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <h2 class="section-title glitch" data-text="Skills & Expertise">Skills & Expertise</h2>
+        
+        <div class="skills-wrapper">
+            <!-- Programming Languages -->
+            <div class="skill-category neon-border-box">
+                <h3 class="category-title">Programming Languages</h3>
+                <div class="skill-bars">
+                    <div class="skill">
+                        <div class="skill-info">
+                            <span>HTML</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress" data-width="95%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-info">
+                            <span>CSS</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress" data-width="90%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-info">
+                            <span>JavaScript</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-info">
+                            <span>Python</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress" data-width="80%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-info">
+                            <span>Java</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress" data-width="75%"></div></div>
+                    </div>
+                    <div class="skill">
+                        <div class="skill-info">
+                            <span>SQL</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="progress-bar"><div class="progress" data-width="85%"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tools & Platforms -->
+            <div class="skill-category neon-border-box tools-box">
+                <h3 class="category-title">Tools & Platforms</h3>
+                <div class="icons-grid">
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🐙</div>
+                        <span>GitHub</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🐧</div>
+                        <span>Linux</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">💻</div>
+                        <span>Visual Studio Code</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🏗️</div>
+                        <span>NetBeans</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🔐</div>
+                        <span>JWT (JSON Web Token)</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🍃</div>
+                        <span>MongoDB</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🔍</div>
+                        <span>Nmap</span>
+                    </div>
+                    <div class="tool hover-glow">
+                        <div class="tool-icon">🕵️‍♂️</div>
+                        <span>Social Engineering Toolkit (SET)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h2 class="section-title glitch" data-text="Featured Projects">Featured Projects</h2>
+        
+        <div class="projects-grid">
+            <!-- Project 1 -->
+            <div class="project-card neon-border-box hover-glow">
+                <div class="project-content">
+                    <h3 class="project-title">Student Registration Web Application</h3>
+                    <p class="project-desc">A simple Java Servlet-based web application that allows users to register students, store details in a database, and view all registered students in a table. Demonstrates Java Servlets, JSP, JDBC, MySQL using NetBeans + Apache Tomcat.</p>
+                    <a href="https://github.com/samiii-code/Student-Registration-Web-Application" target="_blank" class="neon-btn btn-sm">View Source code ⇗</a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card neon-border-box hover-glow">
+                <div class="project-content">
+                    <h3 class="project-title">School Management (MEAN + RBAC)</h3>
+                    <p class="project-desc">A compact school management system built with MongoDB, Express, Angular, and Node.js. Implements JWT authentication, role-based access control (Admin/Teacher/Student), CRUD operations for users, subjects, grades, and marks, and computes letter grades from numeric marks.</p>
+                    <a href="https://github.com/samiii-code/Simple-School-Management-System" target="_blank" class="neon-btn btn-sm">View Source code ⇗</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <h2 class="section-title glitch" data-text="Get In Touch">Get In Touch</h2>
+        
+        <div class="contact-wrapper">
+            <!-- Contact Form -->
+            <div class="contact-form-container neon-border-box">
+                <form id="contact-form">
+                    <div class="input-group">
+                        <input type="text" id="name" required placeholder=" ">
+                        <label>Identity / Name</label>
+                        <span class="focus-border"></span>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="email" required placeholder=" ">
+                        <label>Comlink / Email</label>
+                        <span class="focus-border"></span>
+                    </div>
+                    <div class="input-group">
+                        <textarea id="message" rows="4" required placeholder=" "></textarea>
+                        <label>Encrypted Message</label>
+                        <span class="focus-border"></span>
+                    </div>
+                    <button type="submit" class="neon-btn w-full">Transmit Data <span class="glow"></span></button>
+                </form>
+            </div>
+            
+            <!-- Contact Info -->
+            <div class="contact-info neon-border-box">
+                <h3>Direct Connection</h3>
+                <div class="info-item hover-glow">
+                    <span class="info-icon">📧</span>
+                    <a href="mailto:kenasafayera1@gmail.com">kenasafayera1@gmail.com</a>
+                </div>
+                <div class="info-item hover-glow">
+                    <span class="info-icon">🐙</span>
+                    <a href="https://github.com/samiii-code" target="_blank">github.com/samiii-code</a>
+                </div>
+                <div class="terminal-deco">
+                    <p>> Ping response: 1ms</p>
+                    <p>> Connection established...</p>
+                    <p class="blink">_</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Icon -->
+    <div class="chatbot-trigger hover-glow">
+        <span class="bot-icon">🤖</span>
+    </div>
+
+    <!-- Chatbot Window -->
+    <div class="chatbot-window neon-border-box hidden" id="chatWindow">
+        <div class="chat-header">
+            <h4>AI Assistant</h4>
+            <button class="close-chat" id="closeChat">×</button>
+        </div>
+        <div class="chat-messages" id="chatMsgs">
+            <div class="bot-msg">Beep boop! How can I help you regarding Kenasa's expertise?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chatInput" placeholder="Type command...">
+            <button id="sendMessage" class="neon-btn btn-sm">&gt;</button>
+        </div>
+    </div>
+
+    <!-- Logic Script -->
+    <script src="script.js"></script>
+</body>
+</html>
