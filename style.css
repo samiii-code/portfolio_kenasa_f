@@ -1,6 +1,4 @@
-/* ---- BASE AND CSS VARIABLES ---- */
 :root {
-    /* DEFAULT DARK Cyberpunk Theme */
     --bg-color: #060913;
     --bg-accent: #0f172a;
     --text-primary: #f8fafc;
@@ -66,10 +64,9 @@ body {
     color: var(--text-primary);
     overflow-x: hidden;
     transition: background-color 0.4s ease, color 0.4s ease;
-    cursor: default; /* Keep default, or use crosshair */
+    cursor: default; 
 }
 
-/* Custom Cursor Follower */
 #cursor-glow {
     position: fixed;
     top: 0; left: 0;
@@ -83,7 +80,6 @@ body {
     transition: width 0.2s, height 0.2s, background 0.4s ease;
 }
 
-/* Particle Canvas */
 #particles-canvas {
     position: fixed;
     top: 0; left: 0;
@@ -93,13 +89,11 @@ body {
     pointer-events: none;
 }
 
-/* Typography elements */
 h1, h2, h3, h4, .glitch {
     font-family: 'Orbitron', sans-serif;
     letter-spacing: 1.5px;
 }
 
-/* Scrollbar styling */
 ::-webkit-scrollbar {
     width: 10px;
 }
@@ -111,7 +105,6 @@ h1, h2, h3, h4, .glitch {
     border-radius: 5px;
 }
 
-/* ---- THEME SWITCHER ---- */
 .theme-switcher {
     position: fixed;
     top: 20px;
@@ -146,15 +139,13 @@ h1, h2, h3, h4, .glitch {
 @media (max-width: 600px) {
     .theme-switcher {
         top: auto;
-        bottom: 20px; /* Move to bottom on mobile */
+        bottom: 20px; 
         right: 50%;
         transform: translateX(50%);
         gap: 20px;
     }
-    .theme-btn { font-size: 32px; } /* Large touch-friendly */
+    .theme-btn { font-size: 32px; } 
 }
-
-/* ---- HERO SECTION ---- */
 #hero {
     min-height: 100vh;
     display: flex;
@@ -190,7 +181,6 @@ h1, h2, h3, h4, .glitch {
     border: 3px solid var(--bg-color);
 }
 
-/* Glitch Effect */
 .glitch {
     position: relative;
     font-size: 4rem;
@@ -251,7 +241,6 @@ h1, h2, h3, h4, .glitch {
     line-height: 1.6;
 }
 
-/* Buttons */
 .header-actions {
     display: flex;
     gap: 20px;
@@ -302,7 +291,6 @@ h1, h2, h3, h4, .glitch {
     width: 100%;
 }
 
-/* Scroll indicator */
 .scroll-down {
     position: absolute;
     bottom: 40px;
@@ -333,7 +321,6 @@ h1, h2, h3, h4, .glitch {
     100% { top: 30px; opacity: 0; }
 }
 
-/* ---- COMMON SECTION LAYOUT ---- */
 .section {
     padding: 100px 20px;
     max-width: 1200px;
@@ -366,7 +353,6 @@ h1, h2, h3, h4, .glitch {
     transform: translateY(-5px);
 }
 
-/* ---- SKILLS SECTION ---- */
 .skills-wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -403,7 +389,7 @@ h1, h2, h3, h4, .glitch {
 .progress {
     height: 100%;
     background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-    width: 0; /* Animated by JS */
+    width: 0;
     transition: width 1.5s ease-out;
     box-shadow: 0 0 10px var(--primary-color);
 }
@@ -427,7 +413,6 @@ h1, h2, h3, h4, .glitch {
     filter: drop-shadow(0 0 5px var(--primary-color));
 }
 
-/* ---- PROJECTS SECTION ---- */
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -452,7 +437,6 @@ h1, h2, h3, h4, .glitch {
     margin-bottom: 25px;
 }
 
-/* ---- CONTACT SECTION ---- */
 .contact-wrapper {
     display: grid;
     grid-template-columns: 2fr 1fr;
