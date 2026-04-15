@@ -1,11 +1,9 @@
-// ==== INDIVIDUAL CURSOR FOLLOWING ON WHOLE BODY ====
 const cursorGlow = document.getElementById('cursor-glow');
 document.addEventListener('mousemove', (e) => {
     cursorGlow.style.left = e.clientX + 'px';
     cursorGlow.style.top = e.clientY + 'px';
 });
 
-// Cursor size manipulation on clickable elements
 const interactables = document.querySelectorAll('a, button, .tool, .project-card, input, textarea');
 interactables.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -19,25 +17,22 @@ interactables.forEach(el => {
     });
 });
 
-// ==== THEME SWITCHER ====
 const themeBtns = document.querySelectorAll('.theme-btn');
 themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        // Remove active class from all
+      
         themeBtns.forEach(b => b.classList.remove('active'));
-        // Add active to clicked
+    
         btn.classList.add('active');
-        
-        // Apply theme
+   
         const theme = btn.getAttribute('data-theme');
         document.body.setAttribute('data-theme', theme);
-        
-        // Update particles color based on theme
+      
         updateParticleColors(theme);
     });
 });
 
-// ==== SKILL BARS ANIMATION ON SCROLL ====
+
 const skillSection = document.getElementById('skills');
 const progressBars = document.querySelectorAll('.progress');
 let skillsAnimated = false;
@@ -45,7 +40,6 @@ let skillsAnimated = false;
 window.addEventListener('scroll', () => {
     if(skillsAnimated) return;
     
-    // Animate when the skills section is visible
     const sectionPos = skillSection.getBoundingClientRect().top;
     const screenPos = window.innerHeight / 1.3;
     
@@ -58,7 +52,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ==== PARTICLES BACKGROUND ====
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -85,7 +78,7 @@ class Particle {
         this.x += this.speedX;
         this.y += this.speedY;
         
-        // Wrap around the edges
+       
         if(this.x > canvas.width) this.x = 0;
         if(this.x < 0) this.x = canvas.width;
         if(this.y > canvas.height) this.y = 0;
@@ -98,13 +91,13 @@ class Particle {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.shadowBlur = 0; 
     }
 }
 
 function initParticles() {
     particlesArray = [];
-    const particleCount = window.innerWidth < 800 ? 50 : 120; // Number of particles depending on device width
+    const particleCount = window.innerWidth < 800 ? 50 : 120; 
     for(let i=0; i<particleCount; i++){
         particlesArray.push(new Particle());
     }
@@ -112,7 +105,7 @@ function initParticles() {
 initParticles();
 
 function animateParticles() {
-    // Clear canvas trace slightly to make trails
+   
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for(let i=0; i<particlesArray.length; i++){
         particlesArray[i].update();
@@ -128,7 +121,7 @@ window.addEventListener('resize', () => {
     initParticles();
 });
 
-// ==== CHATBOT INTERACTION ====
+
 const chatbotTrigger = document.querySelector('.chatbot-trigger');
 const chatWindow = document.getElementById('chatWindow');
 const closeChat = document.getElementById('closeChat');
@@ -148,7 +141,6 @@ function handleSendMessage() {
     const text = chatInput.value.trim();
     if(text === '') return;
     
-    // Add user message to UI
     const userDiv = document.createElement('div');
     userDiv.classList.add('user-msg');
     userDiv.innerText = text;
@@ -156,15 +148,12 @@ function handleSendMessage() {
     
     chatInput.value = '';
     
-    // Scroll to bottom
     chatMsgs.scrollTop = chatMsgs.scrollHeight;
     
-    // Simulate generic bot response
     setTimeout(() => {
         const botDiv = document.createElement('div');
         botDiv.classList.add('bot-msg');
         
-        // Simple contextual response system
         const textLow = text.toLowerCase();
         if(textLow.includes('skills') || textLow.includes('stack')) {
             botDiv.innerText = "Kenasa excels in HTML, CSS, JavaScript, Python, Java, SQL, GitHub, and Linux.";
@@ -186,17 +175,15 @@ chatInput.addEventListener('keypress', (e) => {
     if(e.key === 'Enter') handleSendMessage();
 });
 
-// ==== CONTACT FORM BEHAVIOR ====
 const form = document.getElementById('contact-form');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const btn = form.querySelector('button');
     const originalText = btn.innerHTML;
-    // Visually denote transmission
     btn.innerHTML = 'Transmitting...';
     setTimeout(() => {
         btn.innerHTML = 'Data Sent!';
-        form.reset(); // clear inputs
+        form.reset();
         setTimeout(() => {
             btn.innerHTML = originalText;
         }, 2000);
