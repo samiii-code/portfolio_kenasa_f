@@ -4,7 +4,11 @@
 Hi! I'm **Kenasa Fayera**, a **Full-Stack Developer and Hacker**, currently a **3rd-year Software Engineering student at ASTU**. This portfolio showcases my **skills, projects, and services** to potential clients and collaborators. It’s designed to be **modern, interactive, and client-friendly**, highlighting my work in web development, backend systems, and database design.
 
 ---
+## 🚀 Live Demo
+👉 Visit my portfolio here:  
+https://samiii-code.github.io/portfolio_kenasa_f/
 
+---
 ## Features
 
 - 💻 **Professional Hero Section** with profile picture  
