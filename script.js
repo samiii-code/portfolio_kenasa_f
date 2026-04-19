@@ -1,9 +1,11 @@
+// ==== INDIVIDUAL CURSOR FOLLOWING ON WHOLE BODY ====
 const cursorGlow = document.getElementById('cursor-glow');
 document.addEventListener('mousemove', (e) => {
     cursorGlow.style.left = e.clientX + 'px';
     cursorGlow.style.top = e.clientY + 'px';
 });
 
+// Cursor size manipulation on clickable elements
 const interactables = document.querySelectorAll('a, button, .tool, .project-card, input, textarea');
 interactables.forEach(el => {
     el.addEventListener('mouseenter', () => {
@@ -17,22 +19,25 @@ interactables.forEach(el => {
     });
 });
 
+// ==== THEME SWITCHER ====
 const themeBtns = document.querySelectorAll('.theme-btn');
 themeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      
+        // Remove active class from all
         themeBtns.forEach(b => b.classList.remove('active'));
-    
+        // Add active to clicked
         btn.classList.add('active');
-   
+        
+        // Apply theme
         const theme = btn.getAttribute('data-theme');
         document.body.setAttribute('data-theme', theme);
-      
+        
+        // Update particles color based on theme
         updateParticleColors(theme);
     });
 });
 
-
+// ==== SKILL BARS ANIMATION ON SCROLL ====
 const skillSection = document.getElementById('skills');
 const progressBars = document.querySelectorAll('.progress');
 let skillsAnimated = false;
@@ -40,6 +45,7 @@ let skillsAnimated = false;
 window.addEventListener('scroll', () => {
     if(skillsAnimated) return;
     
+    // Animate when the skills section is visible
     const sectionPos = skillSection.getBoundingClientRect().top;
     const screenPos = window.innerHeight / 1.3;
     
@@ -52,6 +58,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// ==== PARTICLES BACKGROUND ====
 const canvas = document.getElementById('particles-canvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
@@ -78,7 +85,7 @@ class Particle {
         this.x += this.speedX;
         this.y += this.speedY;
         
-       
+        // Wrap around the edges
         if(this.x > canvas.width) this.x = 0;
         if(this.x < 0) this.x = canvas.width;
         if(this.y > canvas.height) this.y = 0;
@@ -91,13 +98,13 @@ class Particle {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.shadowBlur = 0; 
+        ctx.shadowBlur = 0; // reset
     }
 }
 
 function initParticles() {
     particlesArray = [];
-    const particleCount = window.innerWidth < 800 ? 50 : 120; 
+    const particleCount = window.innerWidth < 800 ? 50 : 120; // Number of particles depending on device width
     for(let i=0; i<particleCount; i++){
         particlesArray.push(new Particle());
     }
@@ -105,7 +112,7 @@ function initParticles() {
 initParticles();
 
 function animateParticles() {
-   
+    // Clear canvas trace slightly to make trails
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     for(let i=0; i<particlesArray.length; i++){
         particlesArray[i].update();
@@ -121,7 +128,7 @@ window.addEventListener('resize', () => {
     initParticles();
 });
 
-
+// ==== CHATBOT INTERACTION ====
 const chatbotTrigger = document.querySelector('.chatbot-trigger');
 const chatWindow = document.getElementById('chatWindow');
 const closeChat = document.getElementById('closeChat');
@@ -141,6 +148,7 @@ function handleSendMessage() {
     const text = chatInput.value.trim();
     if(text === '') return;
     
+    // Add user message to UI
     const userDiv = document.createElement('div');
     userDiv.classList.add('user-msg');
     userDiv.innerText = text;
@@ -148,22 +156,45 @@ function handleSendMessage() {
     
     chatInput.value = '';
     
+    // Scroll to bottom
     chatMsgs.scrollTop = chatMsgs.scrollHeight;
     
+    // Simulate generic bot response
     setTimeout(() => {
         const botDiv = document.createElement('div');
         botDiv.classList.add('bot-msg');
         
+        // Chatbot intelligence based on DOM reading
         const textLow = text.toLowerCase();
-        if(textLow.includes('skills') || textLow.includes('stack')) {
-            botDiv.innerText = "Kenasa excels in HTML, CSS, JavaScript, Python, Java, SQL, GitHub, and Linux.";
-        } else if(textLow.includes('projects') || textLow.includes('work')) {
-            botDiv.innerText = "He has built a Java Servlet-based Registration App and a MEAN Stack School Management System.";
-        } else if(textLow.includes('contact') || textLow.includes('email') || textLow.includes('reach')) {
-            botDiv.innerText = "You can reach him rapidly at kenasafayera1@gmail.com";
+        let response = "I'm not sure about that. Try asking me about Kenasa's skills, programming languages, projects, or contact info!";
+        
+        // Extract site context on the fly
+        if(textLow.includes('skill') || textLow.includes('language') || textLow.includes('stack')) {
+            const skillNodes = document.querySelectorAll('.skill-info span:first-child');
+            const toolNodes = document.querySelectorAll('.tool span');
+            
+            const skills = Array.from(skillNodes).map(n => n.innerText).join(', ');
+            const tools = Array.from(toolNodes).map(n => n.innerText).join(', ');
+            response = `Kenasa's technical skills encompass: ${skills}. His platforms and tools include: ${tools}.`;
+        } else if(textLow.includes('project') || textLow.includes('work')) {
+            const projectNodes = document.querySelectorAll('.project-title');
+            const projects = Array.from(projectNodes).map(n => n.innerText).join(' and ');
+            response = `Kenasa has built several impressive projects, including: ${projects}. You can view the source code in the Featured Projects section.`;
+        } else if(textLow.includes('contact') || textLow.includes('email') || textLow.includes('reach') || textLow.includes('hire') || textLow.includes('touch')) {
+            const emailNode = document.querySelector('a[href^="mailto:"]');
+            const email = emailNode ? emailNode.innerText : "kenasafayera1@gmail.com";
+            response = `You can get in touch with Kenasa directly via email at ${email}, or using the Social Media options at the top of the page.`;
+        } else if(textLow.includes('who is') || textLow.includes('about') || textLow.includes('bio') || textLow.includes('student')) {
+            const bioNode = document.querySelector('.bio');
+            const bio = bioNode ? bioNode.innerText.replace(/"/g, '') : "He is a student and developer.";
+            response = bio;
+        } else if(textLow.includes('hi') || textLow.includes('hello') || textLow.includes('hey') || textLow.includes('greet')) {
+            response = "Hello there! I'm Kenasa's intelligent assistant. I can answer questions about his skills, background, projects, and how to contact him. What would you like to know?";
         } else {
-            botDiv.innerText = "Interesting parameter! Feel free to explore the portfolio sections to uncover more about Kenasa.";
+            response = "Interesting question! Feel free to explore the portfolio sections directly to uncover more about Kenasa.";
         }
+        
+        botDiv.innerText = response;
         
         chatMsgs.appendChild(botDiv);
         chatMsgs.scrollTop = chatMsgs.scrollHeight;
@@ -175,17 +206,32 @@ chatInput.addEventListener('keypress', (e) => {
     if(e.key === 'Enter') handleSendMessage();
 });
 
-const form = document.getElementById('contact-form');
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Transmitting...';
-    setTimeout(() => {
-        btn.innerHTML = 'Data Sent!';
-        form.reset();
-        setTimeout(() => {
-            btn.innerHTML = originalText;
-        }, 2000);
-    }, 1500);
-});
+// Removed contact form behavior
+
+// ==== SOCIAL MEDIA DROPDOWN INTERACTION ====
+const socialBtn = document.querySelector('.dropbtn');
+const socialContent = document.querySelector('.dropdown-content');
+
+if (socialBtn && socialContent) {
+    socialBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        socialContent.classList.toggle('show');
+    });
+
+    // Close the dropdown if the user clicks outside of it
+    document.addEventListener('click', (e) => {
+        if (!socialBtn.contains(e.target) && !socialContent.contains(e.target)) {
+            socialContent.classList.remove('show');
+        }
+    });
+
+    // Ensure link clicks inside dropdown respond instantly without default anchor delay 
+    const socialLinks = socialContent.querySelectorAll('a');
+    socialLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            // Let the link open normally but remove the show class instantly for polished UI
+            socialContent.classList.remove('show');
+        });
+    });
+}
